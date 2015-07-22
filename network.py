@@ -1,3 +1,5 @@
+import math
+
 def make_link(G, node1, node2):
 	if node1 not in G:
 		G[node1] = {}
@@ -7,15 +9,20 @@ def make_link(G, node1, node2):
 	(G[node2])[node1] = 1
 	return G
 
-a_ring  = {}
+G  = {}
 
-n = 5
+n = 256
+side = int(math.sqrt(n))
+print side
 
-for i in range (n):
-	make_link(a_ring, i, (i+1)%n)
+for i in range (side):
+	for j in range (side):
+		if i < side-1:
+			make_link(G, (i,j), (i+1,j))
+		if j < side-1:
+			make_link(G, (i,j), (i,j+1))
 
-print len(a_ring)
 
-print sum([len(a_ring[node]) for node in a_ring.keys()])/2
+print len(G)
 
-print a_ring
+print sum([len(G[node]) for node in G.keys()])/2
