@@ -14,10 +14,7 @@ def check_connection(G, v1, v2):
     # or False if otherwise
     marked={}
     mark_component(G,v1,marked)
-    if v2 not in marked:
-        return False
-
-    return True
+    return v2 in marked
     
 def make_link(G, node1, node2):
     if node1 not in G:
